@@ -1,0 +1,44 @@
+﻿e883d4e chore: verify and finalize migration
+fe7a3fe feat: implement main application pages
+ src/app/globals.css |  3 +--
+ src/app/page.tsx    | 40 +++++++++-------------------------------
+ 2 files changed, 10 insertions(+), 33 deletions(-)
+91f6097 feat: add api route handlers
+ src/app/api/inngest/route.ts | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+ef593ab feat: add trpc routers for ai operations
+ src/trpc/routers/_app.ts | 26 ++++++++++++++++++++++----
+ 1 file changed, 22 insertions(+), 4 deletions(-)
+2350a8e feat: implement background jobs with inngest
+ src/inngest/client.ts    |  2 +-
+ src/inngest/functions.ts | 51 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 52 insertions(+), 1 deletion(-)
+ccdb555 feat: update database schema for ai providers
+ prisma/schema.prisma | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+d28979f chore: update dependencies and project config
+ package-lock.json | 191 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ package.json      |   4 ++
+ 2 files changed, 195 insertions(+)
+a16ed35 ui: update global styles and home page
+ src/app/globals.css | 210 +++++++++++++++++++++++++++++++++++++---------------
+ src/app/page.tsx    |  40 +++++++++-
+ 2 files changed, 186 insertions(+), 64 deletions(-)
+4f943b9 feat: add auth layout and provider icons
+ public/logos/github.svg                        |   1 +
+ public/logos/google.svg                        | 104 +++++++++++++++++++++++++
+ public/logos/logo.svg                          |   1 +
+ src/app/(auth)/layout.tsx                      |   6 ++
+ src/app/(auth)/login/page.tsx                  |   6 +-
+ src/app/(auth)/signup/page.tsx                 |   6 +-
+ src/features/auth/components/auth-layout.tsx   |  18 +++++
+ src/features/auth/components/login-form.tsx    |  13 ++++
+ src/features/auth/components/register-form.tsx |  13 ++++
+ 9 files changed, 158 insertions(+), 10 deletions(-)
+4cad83b feat: add inngest client and route handler
+ src/app/api/inngest/route.ts | 7 +++++++
+ src/inngest/client.ts        | 5 +++++
+ 2 files changed, 12 insertions(+)
+ff106ea feat: add workflow procedures to trpc
+ src/trpc/routers/_app.ts | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
