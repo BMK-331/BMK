@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   WorkflowsContainer,
   WorkflowsList,
@@ -12,11 +13,14 @@ import type { SearchParams } from "nuqs/server";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
+export const metadata: Metadata = {
+  title: "Workflows",
+  description: "Create and manage your workflows",
+};
+
 type Props = {
   searchParams: Promise<SearchParams>;
 };
-  searchParams: Promise<SearchParams>
-}
 
 const Page = async ({ searchParams }: Props) => {
   await requireAuth();
@@ -28,8 +32,6 @@ const Page = async ({ searchParams }: Props) => {
       <HydrateClient>
         <ErrorBoundary fallback={<WorkflowError />}>
           <Suspense fallback={<WorkflowsLoading />}>
-        <ErrorBoundary fallback={<p>Error!</p>}>
-          <Suspense fallback={<p>Loading...</p>}>
             <WorkflowsList />
           </Suspense>
         </ErrorBoundary>
