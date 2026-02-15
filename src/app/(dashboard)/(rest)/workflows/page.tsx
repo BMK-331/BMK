@@ -15,6 +15,8 @@ import { ErrorBoundary } from "react-error-boundary";
 type Props = {
   searchParams: Promise<SearchParams>;
 };
+  searchParams: Promise<SearchParams>
+}
 
 const Page = async ({ searchParams }: Props) => {
   await requireAuth();
@@ -26,6 +28,8 @@ const Page = async ({ searchParams }: Props) => {
       <HydrateClient>
         <ErrorBoundary fallback={<WorkflowError />}>
           <Suspense fallback={<WorkflowsLoading />}>
+        <ErrorBoundary fallback={<p>Error!</p>}>
+          <Suspense fallback={<p>Loading...</p>}>
             <WorkflowsList />
           </Suspense>
         </ErrorBoundary>

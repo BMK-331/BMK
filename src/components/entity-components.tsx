@@ -7,6 +7,7 @@ import {
   SearchIcon,
   TrashIcon,
 } from "lucide-react";
+import { PlusIcon, SearchIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import React from "react";

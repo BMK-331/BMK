@@ -15,6 +15,14 @@ import {
 import {
   useCreateWorkflow,
   useRemoveWorkflow,
+import {
+  EntityContainer,
+  EntityHeaders,
+  EntityPagination,
+  EntitySearch,
+} from "@/components/entity-components";
+import {
+  useCreateWorkflow,
   useSuspenseWorkflows,
 } from "../hooks/use-workflows";
 import React from "react";
@@ -49,6 +57,9 @@ export const WorkflowsList = () => {
       renderItem={(workflow) => <WorkflowItem data={workflow} />}
       emptyView={<WorkflowsEmpty />}
     />
+    <div className="flex-1 flex justify-center items-center">
+      <p>{JSON.stringify(workflows.data, null, 2)}</p>
+    </div>
   );
 };
 
