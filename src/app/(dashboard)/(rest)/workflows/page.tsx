@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   WorkflowsContainer,
   WorkflowsList,
@@ -11,6 +12,11 @@ import { HydrateClient } from "@/trpc/server";
 import type { SearchParams } from "nuqs/server";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+
+export const metadata: Metadata = {
+  title: "Workflows",
+  description: "Create and manage your workflows",
+};
 
 type Props = {
   searchParams: Promise<SearchParams>;
