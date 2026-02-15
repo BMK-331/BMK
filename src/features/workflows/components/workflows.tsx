@@ -24,6 +24,7 @@ import { useWorkflowsParams } from "../hooks/use-workflows-params";
 import { useEntitySearch } from "@/hooks/use-entity-search";
 import type { Workflow } from "@/generated/prisma/client";
 import { WorkflowIcon } from "lucide-react";
+import { toast } from "sonner";
 
 export const WorkflowsSearch = () => {
   const [params, setParams] = useWorkflowsParams();
@@ -148,11 +149,23 @@ export const WorkflowsEmpty = () => {
 
 export const WorkflowItem = ({ data }: { data: Workflow }) => {
   const removeWorkflow = useRemoveWorkflow();
+  const { handleError, modal } = useUpgradeModal();
 
   const handleRemove = () => {
-    removeWorkflow.mutate({ id: data.id });
+    removeWorkflow.mutate(
+      { id: data.id },
+      {
+        onError: (error) => {
+          if (!handleError(error)) {
+            toast.error(`Failed to remove workflow: ${error.message}`);
+          }
+        },
+      }
+    );
   };
   return (
+    <>
+      {modal}
     <EntityItem
       href={`/workflows/${data.id}`}
       title={data.name}
@@ -171,5 +184,6 @@ export const WorkflowItem = ({ data }: { data: Workflow }) => {
       onRemove={handleRemove}
       isRemoving={removeWorkflow.isPending}
     />
+    </>
   );
 };
