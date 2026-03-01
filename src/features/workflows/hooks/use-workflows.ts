@@ -8,6 +8,7 @@ import {
   useQueryClient,
   useSuspenseQuery,
 } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useWorkflowsParams } from "./use-workflows-params";
 
@@ -52,8 +53,11 @@ export const useRemoveWorkflow = () => {
         toast.success(`Workflow "${data.name}" removed`);
         queryClient.invalidateQueries(trpc.workflows.getMany.queryOptions({}));
         queryClient.invalidateQueries(
-          trpc.workflows.getOne.queryOptions({ id: data.id })
+          trpc.workflows.getOne.queryFilter({ id: data.id })
         );
+      },
+      onError: (error) => {
+        toast.error(`Failed to remove workflow: ${error.message} `);
       },
     })
   );
@@ -83,7 +87,7 @@ export const useUpdateWorkflowName = () => {
         );
         queryClient.invalidateQueries(trpc.workflows.getMany.queryOptions({}));
         queryClient.invalidateQueries(
-          trpc.workflows.getOne.queryOptions({ id: data.id })
+          trpc.workflows.getOne.queryFilter({ id: data.id })
         );
       },
       onError: (error) => {
