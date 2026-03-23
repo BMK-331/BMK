@@ -35,6 +35,7 @@ export function WorkflowNode({
         </NodeToolbar>
       )}
       {children}
+
       {name && (
         <NodeToolbar
           position={Position.Bottom}
